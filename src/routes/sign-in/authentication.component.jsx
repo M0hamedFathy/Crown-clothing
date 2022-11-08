@@ -1,5 +1,5 @@
 import Button from "../../components/button/button.component";
-import SignUpForm from "../../components/sign-up-form/sign-up-form.component";
+import SignUpForm from "../../components/sign-up-form/sign-in-form.component";
 import {
   signInWithGooglePopup,
   createUserDocumentFromAuth,
