@@ -1,3 +1,5 @@
+import Button from "../../components/button/button.component";
+import SignUpForm from "../../components/sign-up-form/sign-up-form.component";
 import {
   signInWithGooglePopup,
   createUserDocumentFromAuth,
@@ -9,10 +11,12 @@ const SignIn = () => {
     // sending the user data to the database so we could check if we need to create collection for this user or not
     const userDocRef = await createUserDocumentFromAuth(user);
   };
+
   return (
     <>
-      <div>Sign In page</div>;
-      <button onClick={logGoogleUser}>Sign in With google popup</button>
+      <h1>Sign In page</h1>;
+      <Button onClick={logGoogleUser}>Sign in With google popup</Button>
+      <SignUpForm />
     </>
   );
 };
