@@ -36,8 +36,12 @@ const SignUpForm = () => {
         email,
         password
       );
+
+      //Passing the user info to the context
+
       // creating the user and passing the displayName because it's not returned from firebase
       await createUserDocumentFromAuth(user, { displayName });
+
       //reseting form
       resetFormFields();
     } catch (error) {
