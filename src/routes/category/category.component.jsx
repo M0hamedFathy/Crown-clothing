@@ -15,14 +15,17 @@ const Category = () => {
   }, [category, categoriesMap]);
 
   return (
-    <div className="category-container">
-      {/* using the products && because once the data component mounts the data hans't been fetched yet so it would be empty arry
+    <>
+      <h2 className="category-title">{category.toLocaleUpperCase()}</h2>
+      <div className="category-container">
+        {/* using the products && because once the data component mounts the data hans't been fetched yet so it would be empty arry
         which is undefined so we using it as a safe guard */}
-      {products &&
-        products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-    </div>
+        {products &&
+          products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+      </div>{" "}
+    </>
   );
 };
 
