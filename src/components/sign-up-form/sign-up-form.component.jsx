@@ -1,12 +1,14 @@
 import { useState } from "react";
+
+import FormInput from "../form-input/form-input.component";
+import Button from "../button/button.component";
+
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
-import Button from "../button/button.component";
-import FormInput from "../form-input/form-input.component";
 
-import "./sign-up-form.styles.scss";
+import { SignUpContainer } from "./sign-up-form.styles";
 
 const defaultFormFields = {
   displayName: "",
@@ -25,9 +27,9 @@ const SignUpForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // Making sure that passwords match
-    if (formFields.password !== formFields.confirmPassword) {
-      alert("Passwords doesn't match");
+
+    if (password !== confirmPassword) {
+      alert("passwords do not match");
       return;
     }
 
@@ -37,15 +39,9 @@ const SignUpForm = () => {
         password
       );
 
-      //Passing the user info to the context
-
-      // creating the user and passing the displayName because it's not returned from firebase
       await createUserDocumentFromAuth(user, { displayName });
-
-      //reseting form
       resetFormFields();
     } catch (error) {
-      // Handling error if user already registered
       if (error.code === "auth/email-already-in-use") {
         alert("Cannot create user, email already in use");
       } else {
@@ -61,7 +57,7 @@ const SignUpForm = () => {
   };
 
   return (
-    <div className="sign-up-container">
+    <SignUpContainer>
       <h2>Don't have an account?</h2>
       <span>Sign up with your email and password</span>
       <form onSubmit={handleSubmit}>
@@ -100,10 +96,9 @@ const SignUpForm = () => {
           name="confirmPassword"
           value={confirmPassword}
         />
-
         <Button type="submit">Sign Up</Button>
       </form>
-    </div>
+    </SignUpContainer>
   );
 };
 
